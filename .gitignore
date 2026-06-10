@@ -1,9 +1,107 @@
-# Ignore build outputs from performing a nix-build or `nix build` command
-result
-result-*
-
-# Ignore automatically generated direnv output
-.direnv
-
 # Ignore NixOS interactive test driver history
 **/.nixos-test-history
+
+# Nix build outputs
+result
+result-*
+*.drv
+
+# Nix flakes
+flake.lock
+
+# Local secrets and environment files
+.env
+.env.*
+*.env
+*.secret
+*.secrets
+secrets/
+secret/
+private/
+credentials/
+tokens/
+keys/
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.pem
+*.key
+*.pub
+
+# Age / SOPS / encrypted secrets
+*.age
+*.sops.yaml
+*.sops.yml
+.sops.yaml
+
+# Hardware / machine-specific backups
+hardware-configuration.nix.backup
+hardware-configuration.nix.bak
+configuration.nix.backup
+configuration.nix.bak
+*.backup
+*.bak
+*.old
+*.orig
+
+# Local NixOS generated files
+/etc/nixos/result
+/etc/nixos/result-*
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux trash / thumbnails
+.Trash-*
+.directory
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+.cache/
+.cache-*
+
+# Ollama local data
+# Do not version downloaded models
+.ollama/
+ollama/
+models/
+
+# Proxmox / VM local notes or exports
+*.qcow2
+*.vmdk
+*.iso
+*.img
+*.raw
+*.ova
+*.ovf
+
+# Terraform / infra leftovers, if used later
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+terraform.tfvars.json
+
+# Direnv
+.direnv/
+.envrc
