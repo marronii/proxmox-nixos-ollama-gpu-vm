@@ -12,14 +12,14 @@ By storing the setup in Git, the configuration becomes easier to review, update,
 
 The reference setup was built on Proxmox VE using PCIe GPU passthrough with an NVIDIA RTX 5060 Ti. It is intended for local AI workloads, homelab experiments, and LLM inference with GPU acceleration.
 
-```text
+```
 Proxmox VE Host
 └── NixOS VM
     ├── NVIDIA GPU via PCIe passthrough
     ├── NVIDIA Open Kernel Modules
     ├── Ollama with CUDA support
     └── Ollama API exposed on port 11434
-````
+```
 
 ## Reference Environment
 
@@ -167,6 +167,27 @@ curl http://YOUR_VM_IP:11434/api/tags
 └── README.md
 ```
 
+## Usage Notes
+
+This repository is intended as a reusable template.
+
+Before applying it to a new VM, review and adjust:
+
+* Disk layout in `hardware-configuration.nix`
+* Network configuration
+* Username
+* SSH access method
+* Firewall rules
+* GPU driver package if using a different NVIDIA generation
+
+For a fresh NixOS installation, generate the hardware configuration first:
+
+```bash
+sudo nixos-generate-config --root /mnt
+```
+
+Then compare the generated `hardware-configuration.nix` with the template in this repository.
+
 ## Security Notes
 
 Before publishing or reusing this configuration, review all files and avoid exposing:
@@ -184,3 +205,7 @@ Before publishing or reusing this configuration, review all files and avoid expo
 * Private infrastructure names
 
 Use placeholders whenever possible.
+
+## License
+
+MIT
