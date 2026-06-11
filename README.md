@@ -12,14 +12,14 @@ By storing the setup in Git, the configuration becomes easier to review, update,
 
 The reference setup was built on Proxmox VE using PCIe GPU passthrough with an NVIDIA RTX 5060 Ti. It is intended for local AI workloads, homelab experiments, and LLM inference with GPU acceleration.
 
-```
+```text
 Proxmox VE Host
 └── NixOS VM
     ├── NVIDIA GPU via PCIe passthrough
     ├── NVIDIA Open Kernel Modules
     ├── Ollama with CUDA support
     └── Ollama API exposed on port 11434
-```
+````
 
 ## Reference Environment
 
