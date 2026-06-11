@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # ---------------------------------------------------------------------------
   # Boot
@@ -9,14 +11,6 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # EFI boot partition.
-  #
-  # Adjust the device path according to your VM disk layout.
-  fileSystems."/boot" = {
-    device = "/dev/vda1";
-    fsType = "vfat";
-  };
 
   # Linux 6.12 LTS was used in the reference setup for compatibility with
   # NVIDIA RTX 50xx / Blackwell GPUs and the selected NVIDIA driver package.
@@ -103,16 +97,11 @@
   networking = {
     hostName = "nixos-ollama";
 
-    # Example static network configuration.
+    # DHCP is enabled by default to keep this template generic and reusable.
     #
-    # Replace the interface name, IP address, gateway, and DNS servers according
-    # to your own environment.
-    interfaces."<your-network-interface>".ipv4.addresses = [{
-      address = "192.168.x.x";
-      prefixLength = 24;
-    }];
-
-    defaultGateway = "192.168.x.1";
+    # If you prefer a static IP, replace this with your own interface name,
+    # IP address, gateway, and DNS settings.
+    useDHCP = true;
 
     nameservers = [
       "1.1.1.1"
@@ -136,8 +125,8 @@
     enable = true;
 
     settings = {
-      # For public templates, SSH key authentication is recommended.
-      # Enable password authentication only for local lab environments.
+      # SSH key authentication is recommended for reusable templates.
+      # Enable password authentication only in trusted local lab environments.
       PasswordAuthentication = false;
       PermitRootLogin = "no";
     };
@@ -147,21 +136,25 @@
   # User
   # ---------------------------------------------------------------------------
 
-  users.users.example = {
+  users.users.nixos = {
     isNormalUser = true;
 
     # wheel = sudo access
     # video = GPU/video device access
     extraGroups = [ "wheel" "video" ];
 
-    # Prefer setting the password manually after installation:
+    # Recommended: set a password after installation:
     #
-    #   sudo passwd example
+    #   sudo passwd nixos
     #
-    # Avoid publishing initialPassword in public repositories.
+    # Or add your SSH public key here:
+    #
+    # openssh.authorizedKeys.keys = [
+    #   "ssh-ed25519 YOUR_PUBLIC_KEY_HERE"
+    # ];
   };
 
-  # For public templates, it is safer to require a sudo password.
+  # Require sudo password by default for safer public templates.
   security.sudo.wheelNeedsPassword = true;
 
   # ---------------------------------------------------------------------------
