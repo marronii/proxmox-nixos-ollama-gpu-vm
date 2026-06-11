@@ -1,15 +1,15 @@
-# Ignore NixOS interactive test driver history
-**/.nixos-test-history
-
+# ---------------------------------------------------------------------------
 # Nix build outputs
+# ---------------------------------------------------------------------------
+
 result
 result-*
 *.drv
 
-# Nix flakes
-flake.lock
-
+# ---------------------------------------------------------------------------
 # Local secrets and environment files
+# ---------------------------------------------------------------------------
+
 .env
 .env.*
 *.env
@@ -22,7 +22,10 @@ credentials/
 tokens/
 keys/
 
+# ---------------------------------------------------------------------------
 # SSH keys
+# ---------------------------------------------------------------------------
+
 id_rsa
 id_rsa.pub
 id_ed25519
@@ -31,27 +34,34 @@ id_ed25519.pub
 *.key
 *.pub
 
+# ---------------------------------------------------------------------------
 # Age / SOPS / encrypted secrets
+# ---------------------------------------------------------------------------
+
 *.age
 *.sops.yaml
 *.sops.yml
 .sops.yaml
 
-# Hardware / machine-specific backups
-hardware-configuration.nix.backup
-hardware-configuration.nix.bak
-configuration.nix.backup
-configuration.nix.bak
+# ---------------------------------------------------------------------------
+# Backups and local generated files
+# ---------------------------------------------------------------------------
+
 *.backup
 *.bak
 *.old
 *.orig
+*.tmp
 
-# Local NixOS generated files
-/etc/nixos/result
-/etc/nixos/result-*
+configuration.nix.backup
+configuration.nix.bak
+hardware-configuration.nix.backup
+hardware-configuration.nix.bak
 
+# ---------------------------------------------------------------------------
 # Editor files
+# ---------------------------------------------------------------------------
+
 .vscode/
 .idea/
 *.swp
@@ -60,33 +70,40 @@ configuration.nix.bak
 .project
 .settings/
 
-# macOS
+# ---------------------------------------------------------------------------
+# OS files
+# ---------------------------------------------------------------------------
+
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Linux trash / thumbnails
 .Trash-*
 .directory
 Thumbs.db
 
-# Logs
+# ---------------------------------------------------------------------------
+# Logs and temporary folders
+# ---------------------------------------------------------------------------
+
 *.log
 logs/
-
-# Temporary files
 tmp/
 temp/
 .cache/
 .cache-*
 
+# ---------------------------------------------------------------------------
 # Ollama local data
-# Do not version downloaded models
+# ---------------------------------------------------------------------------
+
 .ollama/
 ollama/
 models/
 
-# Proxmox / VM local notes or exports
+# ---------------------------------------------------------------------------
+# VM images and exports
+# ---------------------------------------------------------------------------
+
 *.qcow2
 *.vmdk
 *.iso
@@ -95,13 +112,21 @@ models/
 *.ova
 *.ovf
 
+# ---------------------------------------------------------------------------
 # Terraform / infra leftovers, if used later
+# ---------------------------------------------------------------------------
+
 .terraform/
 *.tfstate
 *.tfstate.*
 terraform.tfvars
 terraform.tfvars.json
 
+# ---------------------------------------------------------------------------
 # Direnv
+# ---------------------------------------------------------------------------
+
 .direnv/
 .envrc
+
+```
