@@ -205,7 +205,3 @@ Before publishing or reusing this configuration, review all files and avoid expo
 * Private infrastructure names
 
 Use placeholders whenever possible.
-
-## License
-
-MIT
